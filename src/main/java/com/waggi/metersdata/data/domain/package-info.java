@@ -8,7 +8,7 @@
                 ),
                 @org.hibernate.annotations.Parameter(
                         name = "initial_value",
-                        value = "0"
+                        value = "1"
                 )
         })
 package com.waggi.metersdata.data.domain;

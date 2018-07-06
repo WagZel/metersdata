@@ -39,7 +39,7 @@ spring:
     profiles: postgresql
     datasource:
         url: jdbc:postgresql://localhost:5432/metersdata
-        username: user
+        username: pg_user
         password: pass
         driverClassName: org.postgresql.Driver
         maximum-pool-size: 30
@@ -48,6 +48,7 @@ spring:
     jpa:
         properties:
             hibernate:
+                jdbc.lob.non_contextual_creation: true
                 dialect: org.hibernate.dialect.PostgreSQLDialect
 logging:
     level.org.springframework: WARN
