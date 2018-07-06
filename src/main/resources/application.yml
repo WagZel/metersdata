@@ -1,0 +1,53 @@
+server:
+    port: 8181
+    sessionTimeout: 30
+spring:
+    profiles:
+        active: postgresql
+    jpa:
+        hibernate:
+            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                show_sql: true
+                foramt_sql: true
+                use_sql_comments: true
+    freemarker.expose-request-attributes: true
+logging:
+    level.com.waggi: ALL
+
+---
+
+spring:
+    profiles: h2
+    datasource:
+        url: jdbc:h2:mem:indicationsapp;DB_CLOSE_DELAY=-1
+        username: sa
+        password: sa
+        driverClassName: org.h2.Driver
+    jpa:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.H2Dialect
+logging:
+    level.org.springframework: INFO
+
+---
+
+spring:
+    profiles: postgresql
+    datasource:
+        url: jdbc:postgresql://localhost:5432/metersdata
+        username: user
+        password: pass
+        driverClassName: org.postgresql.Driver
+        maximum-pool-size: 30
+        testWhileIdle: true
+        validationQuery: "SELECT 1"
+    jpa:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+logging:
+    level.org.springframework: WARN
